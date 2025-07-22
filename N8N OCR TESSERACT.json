@@ -1,5 +1,5 @@
 {
-  "name": "My workflow 2",
+  "name": "N8N OCR KTP TESSERACT",
   "nodes": [
     {
       "parameters": {
@@ -19,10 +19,10 @@
       "type": "n8n-nodes-base.formTrigger",
       "typeVersion": 2.2,
       "position": [
-        0,
-        0
+        32,
+        32
       ],
-      "id": "6f825e26-36be-4482-a299-7aca4f7f800d",
+      "id": "b153c2b3-d965-4b70-a6e8-c9a35c9aefa4",
       "name": "On form submission",
       "webhookId": "d76f3018-9939-48ef-bee3-3bd1f1524191"
     },
@@ -34,10 +34,10 @@
       "type": "n8n-nodes-tesseractjs.tesseractNode",
       "typeVersion": 1,
       "position": [
-        208,
-        0
+        240,
+        32
       ],
-      "id": "52a294c8-c773-4383-b037-bf65ef8a0006",
+      "id": "02f696ef-c06b-41d4-8622-84e460ea029a",
       "name": "Tesseract"
     },
     {
@@ -112,10 +112,10 @@
       "type": "@n8n/n8n-nodes-langchain.informationExtractor",
       "typeVersion": 1.2,
       "position": [
-        416,
-        0
+        448,
+        32
       ],
-      "id": "b80c13c4-881c-4345-ac4e-9dbe2b73cffc",
+      "id": "2271d0b9-0498-4fd1-8aad-3e7fb553b929",
       "name": "Information Extractor"
     },
     {
@@ -126,17 +126,11 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
       "typeVersion": 1,
       "position": [
-        352,
-        208
+        384,
+        240
       ],
-      "id": "659f5627-b4d2-4cba-98ae-b8afd3c2617c",
-      "name": "OpenRouter Chat Model",
-      "credentials": {
-        "openRouterApi": {
-          "id": "",
-          "name": "OpenRouter account"
-        }
-      }
+      "id": "cc0db690-80d5-45e1-bf82-dcc2d00e708d",
+      "name": "OpenRouter Chat Model"
     }
   ],
   "pinData": {},
@@ -179,11 +173,10 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "22e14b4d-765e-46ab-8d89-a58238613042",
+  "versionId": "72cf00d6-da79-48c5-9e01-462ef658c33f",
   "meta": {
-    "templateCredsSetupCompleted": true,
     "instanceId": "1024200b7e8c3c096d8941d745808359fc121b702b42a69c3238f5cf99a28bfc"
   },
-  "id": "dK0NHJvqmutjXPxv",
+  "id": "0wm6OaFCMiC6eF6Q",
   "tags": []
 }
