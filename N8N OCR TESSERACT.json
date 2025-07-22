@@ -1,0 +1,189 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Upload KTP",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "KTP",
+              "fieldType": "file",
+              "multipleFiles": false,
+              "acceptFileTypes": ".jpg, .png, .jpeg"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "6f825e26-36be-4482-a299-7aca4f7f800d",
+      "name": "On form submission",
+      "webhookId": "d76f3018-9939-48ef-bee3-3bd1f1524191"
+    },
+    {
+      "parameters": {
+        "inputDataFieldName": "KTP",
+        "options": {}
+      },
+      "type": "n8n-nodes-tesseractjs.tesseractNode",
+      "typeVersion": 1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "52a294c8-c773-4383-b037-bf65ef8a0006",
+      "name": "Tesseract"
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.text }}",
+        "attributes": {
+          "attributes": [
+            {
+              "name": "NIK",
+              "description": "NIK dari KTP, 16 angka"
+            },
+            {
+              "name": "Nama",
+              "description": "Nama dalam KTP"
+            },
+            {
+              "name": "Tempat/Tgl Lahir",
+              "description": "Tempat/Tgl Lahir dari KTP"
+            },
+            {
+              "name": "Jenis Kelamin",
+              "description": "Jenis Kelamin dari KTP"
+            },
+            {
+              "name": "Gol. Darah",
+              "description": "Gol. Darah dari KTP"
+            },
+            {
+              "name": "Alamat",
+              "description": "Alamat dari KTP"
+            },
+            {
+              "name": "RT/RW",
+              "description": "RT/RW dari KTP"
+            },
+            {
+              "name": "Kel/Desa",
+              "description": "Kel/Desa dari KTP"
+            },
+            {
+              "name": "Kecamatan",
+              "description": "Kecamatan dari KTP"
+            },
+            {
+              "name": "Agama",
+              "description": "Agama dari KTP"
+            },
+            {
+              "name": "Status Perkawinan",
+              "description": "Status Perkawinan dari KTP"
+            },
+            {
+              "name": "Pekerjaan",
+              "description": "Pekerjaan dari KTP"
+            },
+            {
+              "name": "Kewarganegaraan",
+              "description": "Kewarganegaraan dari KTP"
+            },
+            {
+              "name": "Provinsi",
+              "description": "Provinsi dari KTP"
+            },
+            {
+              "name": "Kabupaten",
+              "description": "Kabupaten dari KTP"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1.2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "b80c13c4-881c-4345-ac4e-9dbe2b73cffc",
+      "name": "Information Extractor"
+    },
+    {
+      "parameters": {
+        "model": "deepseek/deepseek-r1:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        352,
+        208
+      ],
+      "id": "659f5627-b4d2-4cba-98ae-b8afd3c2617c",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "1VRGVkVOemoHGxzS",
+          "name": "OpenRouter account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Tesseract",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tesseract": {
+      "main": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "22e14b4d-765e-46ab-8d89-a58238613042",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "1024200b7e8c3c096d8941d745808359fc121b702b42a69c3238f5cf99a28bfc"
+  },
+  "id": "dK0NHJvqmutjXPxv",
+  "tags": []
+}
